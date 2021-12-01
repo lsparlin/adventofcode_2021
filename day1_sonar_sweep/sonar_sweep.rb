@@ -15,14 +15,14 @@ class SonarSweep
 
   private
 
-  def numbers
-    @numbers ||= File.open("./advent_input_1.txt").readlines.map(&:chomp).map(&:to_i)
-  end
-
   def file
     @file ||= File.open(
       File.expand_path("advent_input_1.txt", File.dirname(__FILE__))
     )
+  end
+
+  def numbers
+    @numbers ||= file.open("./advent_input_1.txt").readlines.map(&:chomp).map(&:to_i)
   end
 end
 
