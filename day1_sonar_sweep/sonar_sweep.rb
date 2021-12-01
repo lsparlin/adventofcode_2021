@@ -1,4 +1,5 @@
 ##
+# SonarSweep
 # https://adventofcode.com/2021/day/1
 #
 class SonarSweep
@@ -17,12 +18,17 @@ class SonarSweep
   def numbers
     @numbers ||= File.open("./advent_input_1.txt").readlines.map(&:chomp).map(&:to_i)
   end
+
+  def file
+    @file ||= File.open(
+      File.expand_path("advent_input_1.txt", File.dirname(__FILE__))
+    )
+  end
 end
 
 ##  Execute
 p "simple total:"
 pp SonarSweep.new.calculate_simple_total
-
 
 p "sliding total:"
 pp SonarSweep.new.calculate_sliding_total
