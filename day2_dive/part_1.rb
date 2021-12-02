@@ -1,5 +1,5 @@
 ##
-# https://adventofcode.com/2021/day/2#part2
+# https://adventofcode.com/2021/day/2
 # Part 1
 #
 class DiveMovement
