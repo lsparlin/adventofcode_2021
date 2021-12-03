@@ -12,3 +12,7 @@ _____
 ### [Day 2](https://adventofcode.com/2021/day/2)
 - [Dive ruby solution (part 1)](day2_dive/part_1.rb)
 - [Dive ruby solution (part 2)](day2_dive/part_2.rb)
+
+### [Day 3](https://adventofcode.com/2021/day/3)
+- [Diagnostics ruby solution](day3_diagnostic/submarine_diagnostics.rb)
+(parts 1 & 2)
