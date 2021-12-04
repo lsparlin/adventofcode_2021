@@ -16,3 +16,6 @@ _____
 ### [Day 3](https://adventofcode.com/2021/day/3)
 - [Diagnostics ruby solution](day3_diagnostic/submarine_diagnostics.rb)
 (parts 1 & 2)
+
+### [Day 4](https://adventofcode.com/2021/day/4)
+- [Bingo winner solution](day4_bingo/bingo.rb)
