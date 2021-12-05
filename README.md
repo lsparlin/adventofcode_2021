@@ -19,3 +19,4 @@ _____
 
 ### [Day 4](https://adventofcode.com/2021/day/4)
 - [Bingo winner solution](day4_bingo/bingo.rb)
+(parts 1 & 2)

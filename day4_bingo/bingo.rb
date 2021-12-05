@@ -4,14 +4,31 @@ module SquidBingo
 
     def play_to_first_winner
       each_draw do |draw|
-        return Result.new(winning_card, draw) if winning_card
+        return Result.new(bingos.first, draw) if bingos.any?
       end
 
       "No winner"
     end
 
-    def winning_card
-      cards.find { |card| card.bingo? }
+    def play_with_ordered_winners
+      game_winners = []
+      remaining_cards = cards.dup
+
+      each_draw do |draw|
+        draw_winners = bingos(check_cards: remaining_cards)
+        if draw_winners.any?
+          game_winners.append(*draw_winners.map { |card| Result.new(card, draw) })
+          remaining_cards = remaining_cards.reject { |card| card.bingo? }
+
+          break if remaining_cards.empty?
+        end
+      end
+
+      game_winners
+    end
+
+    def bingos(check_cards: cards)
+      check_cards.select { |card| card.bingo? }
     end
 
     private
@@ -106,12 +123,24 @@ module SquidBingo
   end
 end
 
-game = SquidBingo::GameEngine.build_game(file_input: DATA.readlines.map(&:chomp))
+
+lines = DATA.readlines.map(&:chomp)
+pp "PART 1"
+game = SquidBingo::GameEngine.build_game(file_input: lines)
 outcome = game.play_to_first_winner
 
 pp "WINNER"
 pp outcome.bingo_card.to_s
 pp outcome.bingo_card.sum_unmarked * outcome.final_draw.to_i
+
+pp "PART 2"
+game = SquidBingo::GameEngine.build_game(file_input: lines)
+all_winners = game.play_with_ordered_winners
+
+pp "LAST WINNER"
+last_winner = all_winners.last
+pp last_winner.bingo_card.to_s
+pp last_winner.bingo_card.sum_unmarked * last_winner.final_draw.to_i
 
 __END__
 79,9,13,43,53,51,40,47,56,27,0,14,33,60,61,36,72,48,83,42,10,86,41,75,16,80,15,93,95,45,68,96,84,11,85,63,18,31,35,74,71,91,39,88,55,6,21,12,58,29,69,37,44,98,89,78,17,64,59,76,54,30,65,82,28,50,32,77,66,24,1,70,92,23,8,49,38,73,94,26,22,34,97,25,87,19,57,7,2,3,46,67,90,62,20,5,52,99,81,4
