@@ -28,7 +28,7 @@ module SquidBingo
     end
 
     def bingos(check_cards: cards)
-      check_cards.select { |card| card.bingo? }
+      check_cards.select(&:bingo?)
     end
 
     private
